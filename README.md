@@ -1,11 +1,16 @@
 # VoiceWizards_deepfake_detectione
 SW중심대학에서 진행한 디지털 경진대회(2024) AI부분: 가짜음성탐지  
+**[Public 11위, Pritvate 11위] VoiceWizards팀**  
+  
 **※ 이 레파지토리에서는 데이터를 제공하지 않습니다.**  
-
-대회에서 제공된 데이터(open.zip)를 압축해제 후, 제출 파일도 같은 경로에 압축을 해제 해야 함  
   
 ---
-## **코드**
+# 모델 흐름도
+![image](https://github.com/user-attachments/assets/f770382a-443f-46b2-993d-cda5b57d3d8b)
+
+## **Code**
+대회에서 제공된 데이터(open.zip)를 압축해제 후, 제출 파일도 같은 경로에 압축을 해제 해야 함  
+
 - **data_augment.ipynb**  
 Train 데이터 셋에서 test 셋과 비슷하게 만들기 위한 데이터 증강 코드  
 코드 실행은 되나 랜덤 시드가 설정 안돼 있기 때문에 train 데이터가 변할 수 있음  
