@@ -1,50 +1,60 @@
-# VoiceWizards_deepfake_detectione
-SW중심대학에서 진행한 디지털 경진대회(2024) AI부분: 가짜음성탐지  
-**[Public 11위, Pritvate 11위] VoiceWizards팀**  
-  
-**※ 이 레파지토리에서는 데이터를 제공하지 않습니다.**  
-  
----
-# 모델 흐름도
+# VoiceWizards Deepfake Detection
+**2024 Digital Competition (AI Category) hosted by the SW-Oriented University Program: Fake Voice Detection**  
+**[Public Rank 11, Private Rank 11] - VoiceWizards Team**
+
+**※ Data is not provided in this repository.**
+
+<br>
+
+## Model Flowchart
 ![image](https://github.com/user-attachments/assets/f770382a-443f-46b2-993d-cda5b57d3d8b)
 
+<br>
+
 ## **Code**
-대회에서 제공된 데이터(open.zip)를 압축해제 후, 제출 파일도 같은 경로에 압축을 해제 해야 함  
+After extracting the provided data (open.zip), the submission files should also be extracted in the same directory.
 
 - **data_augment.ipynb**  
-Train 데이터 셋에서 test 셋과 비슷하게 만들기 위한 데이터 증강 코드  
-코드 실행은 되나 랜덤 시드가 설정 안돼 있기 때문에 train 데이터가 변할 수 있음  
-우리가 실험한 train 데이터를 사용하기 위해서는 압축을 푼 폴더에 ‘train_augmented1’폴더와 ‘train_augmented3’폴더 속 데이터를 그대로 사용해야지 재현이 가능  
+  Code for augmenting the train dataset to make it similar to the test set.  
+  While the code runs, the random seed is not set, so the train data might change.  
+  To reproduce our experiment, you must use the data inside the 'train_augmented1' and 'train_augmented3' folders as they are after extraction.
+  
 - **training_clean_AASIST.ipynb**  
-training을 위한 코드  
-data_augment.ipynb에서 데이터 증강을 다시 했다면 우리의 실험과 달라지기 때문에 다소 점수 차이가 발생할 수 있음  
-코드를 정상적으로 실행하기 위해 젤 위에 코드 셀인 git clone 명령어가 실행 되어야함  
+  Code for training.  
+  If data augmentation is redone in data_augment.ipynb, the results may differ from our experiment, leading to some score differences.  
+  The first code cell, which includes the git clone command, must be executed for the code to run properly.
+  
 - **inference_clean_AASIST.ipynb**  
-inference를 위한 코드  
-training_clean_AASIST.ipynb에서 git clone이 실행됐다고 가정  
-가끔 test 데이터와 CleanUNet이 충돌이나서 파일이 nan 값을 가질때가 있음 그경우 아래의 코드에 빈 리스트가 출력이 안되는데, 이럴 경우 test 데이터를 다시 불러와야함 (대부분의 경우 문제가 발생하지 않음)  
- 
-## **weight 파일**
-파일명: **clean_aasist7_18_3.pth**  
-inference_clean_AASIST.ipynb 코드에서 불러온다.  
-CleanUNet의 weight는 git clone으로 training_clean_AASIST.ipynb에서 가져옴.  
-CleanUNet이 출력을 매번 조금씩 다르게 주는 것 같아, 점수가 다소 다를 수 있음  
+  Code for inference.  
+  It assumes that git clone has been executed in training_clean_AASIST.ipynb.  
+  Occasionally, there is a conflict between the test data and CleanUNet, causing files to contain NaN values. In such cases, the code below may not output an empty list, and you will need to reload the test data (this issue rarely occurs).
 
-## **사용한 사전 학습 모델 출처**
+<br>
+
+## **Weight File**
+Filename: **clean_aasist7_18_3.pth**  
+It is loaded in the inference_clean_AASIST.ipynb code.  
+The CleanUNet weights are fetched via git clone in training_clean_AASIST.ipynb.  
+Since CleanUNet sometimes produces slightly different outputs, the scores may vary slightly.
+
+<br>
+
+## **Pretrained Models Used**
 - **CleanUNet**  
-코드에서 git clone을 통해 가져온다. 사전 학습 파라미터도 코드안에서 접근  
-출처: https://github.com/NVIDIA/CleanUNet  
-논문: https://arxiv.org/abs/2202.07790  
+  Retrieved via git clone in the code. Pretrained parameters are also accessed within the code.  
+  Source: https://github.com/NVIDIA/CleanUNet  
+  Paper: https://arxiv.org/abs/2202.07790  
+  
 - **AASIST**  
-https://github.com/clovaai/aasist/blob/main/models/weights/AASIST.pth 에서 다운로드  
-(따로 다운로드 필요없이 압축 파일에 존재, 위 링크 파일과 동일)  
-출처: https://github.com/clovaai/aasist  
-논문: https://arxiv.org/abs/2110.01200  
- 
-## **개발 환경**
-Google colab pro+ 환경에서 실행  
--	Gpu = A100  
-**github 코드는 Colab환경이 아니더라도 로컬에서 가능하도록 수정하여 업로드됨**  
-라이브러리: requirements.txt 파일에 기재
+  Downloaded from https://github.com/clovaai/aasist/blob/main/models/weights/AASIST.pth  
+  (No need to download separately; the file is included in the zip and is identical to the link)  
+  Source: https://github.com/clovaai/aasist  
+  Paper: https://arxiv.org/abs/2110.01200  
 
+<br> 
 
+## **Development Environment**
+Executed in Google Colab Pro+ environment  
+- Gpu = A100  
+**The GitHub code has been modified to work on local environments as well, not just in Colab.**  
+Libraries: Listed in the requirements.txt file
