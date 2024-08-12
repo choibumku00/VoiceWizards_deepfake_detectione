@@ -45,4 +45,4 @@ https://github.com/clovaai/aasist/blob/main/models/weights/AASIST.pth 에서 다
 Google colab pro+ 환경에서 실행  
 -	Gpu = A100  
 **github 코드는 Colab환경이 아니더라도 로컬에서 가능하도록 수정하여 업로드됨**  
-라이브러리: requirements.txt 파일에 기재
+라이브러리: requirements.txt 파일에 기재 
